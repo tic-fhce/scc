@@ -82,6 +82,9 @@
                                     @csrf
                                         <br>
                                         <input type="text" name="id_persona" value="{{$persona->id}}">
+                                        @if(isset($horario))
+                                        <input type="text" name="tipoh" value="{{$horario->tipo}}">
+                                        @endif
                                         <div class="mb-3 row">
                                             <label class="col-sm-4 col-form-label">Gestion</label>
                                             <div class="col-sm-8">
