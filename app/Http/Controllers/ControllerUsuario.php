@@ -57,9 +57,9 @@ class ControllerUsuario extends Controller
             $persona->celular=$request->celular;
             $persona->save();
 
-            $usuario=Models\Usuario::findOrfail($usuario->id);
-            $usuario->id_unidad=$request->unidad;
-            $usuario->save();
+            $user=Models\Usuario::findOrfail($usuario->id);
+            $user->id_unidad=$request->unidad;
+            $user->save();
 
             return redirect()->back()->with('mensaje','Datos Personales Actualizados Correctamente, para verificar los datos inicie sesión nuevamente');
         }
@@ -109,4 +109,21 @@ class ControllerUsuario extends Controller
         else
             return redirect('/');
     }
+
+    public function updateHorario(Request $request){
+        session_start();
+        if(isset($_SESSION['usuario']))
+        {
+            $usuario=$_SESSION['usuario'];
+
+            $user=Models\Usuario::where('id_persona',$request->id_persona)->first();
+            $user->id_horario=$request->id_horario;
+            $user->save();
+
+            return redirect()->back()->with('mensaje','Horario Actualizado Correctamente');
+        }
+        else
+            return redirect('/');
+    }
+
 }

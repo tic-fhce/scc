@@ -25,6 +25,10 @@
                     <button type="button" class="btn btn-warning botn-block" data-bs-toggle="modal" data-bs-target="#actualizarDatos">
                         Actualizar Datos
                     </button>
+                    <hr>
+                    <button type="button" class="btn btn-primary botn-block" data-bs-toggle="modal" data-bs-target="#actualizarHorario">
+                        Actualizar Horario
+                    </button>
                     @else
                     <button type="button" class="btn btn-primary botn-block" data-bs-toggle="modal" data-bs-target="#crearUsuario">
                         Crear Usuario
@@ -83,7 +87,7 @@
                                         <br>
                                         <input type="text" name="id_persona" value="{{$persona->id}}">
                                         @if(isset($horario))
-                                        <input type="text" name="tipoh" value="{{$horario->tipo}}">
+                                        <input type="text" name="horario" value="{{$horario->id}}">
                                         @endif
                                         <div class="mb-3 row">
                                             <label class="col-sm-4 col-form-label">Gestion</label>
@@ -118,7 +122,7 @@
                                         <hr>
                                         <div class="mb-3 row">
                                             <button type="submit" class="btn btn-success botn-block">
-                                                <i class="fa fa-floppy-o"></i> Generar PDF
+                                                <i class="fa fa-floppy-o"></i> Generar Reporte
                                             </button>
                                         </div>
                                     </form>
@@ -281,5 +285,49 @@
     </div>
   </div>
 </div>
+
+
+<!--Modal Horario-->
+
+<div class="modal fade" id="actualizarHorario" tabindex="-1" aria-labelledby="Actualizar Horario" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Actualizar Horario</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form action="{{route('updateHorario')}}" method="post">
+              @csrf 
+              <input type="text" name="id_persona" value="{{$persona->id}}">
+              
+              <div class="mb-3 row">
+                  <label for="staticEmail" class="col-sm-12 col-form-label">{{$persona->nombre}} {{$persona->paterno}} {{$persona->materno}}</label>
+              </div>
+  
+              
+              <div class="mb-3 row">
+                  <label for="staticEmail" class="col-sm-4 col-form-label">Unidad</label>
+                  <div class="col-sm-8">
+                      <select name="id_horario" class="form-control">
+                          <option value="0">Selecionar Horario</option>
+                          @foreach($horarios as $horario)
+                          <option value="{{$horario->id}}">{{$horario->tipo}} : Ingreso {{$horario->ingreso}} am.</option>
+                          @endforeach
+                      </select>
+                  </div>
+              </div>
+  
+              <div class="mb-3 row">
+                  <input type="submit" class="btn btn-success botn-block" value="Actualizar">
+              </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
 @endsection

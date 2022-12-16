@@ -30,6 +30,7 @@ Route::get('/password',[ControllerUsuario::class,'password'])->name('password');
 Route::put('/updateDatos',[ControllerUsuario::class,'updateDatos'])->name('updateDatos');
 Route::put('/updatePass',[ControllerUsuario::class,'updatePass'])->name('updatePass');
 Route::post('/addUsuario',[ControllerUsuario::class,'addUsuario'])->name('addUsuario');
+Route::post('/updateHorario',[ControllerUsuario::class,'updateHorario'])->name('updateHorario');
 
 ##################### MODULO PERSONAL #############################
 Route::get('/listaPersonal',[ControllerPersonal::class,'listaPersonal'])->name('listaPersonal');
@@ -39,6 +40,7 @@ Route::put('/updateDatosPersonal',[ControllerPersonal::class,'updateDatosPersona
 
 ##################### MODULO REPORTE #############################
 Route::post('/reporte',[ControllerReporte::class,'reporte'])->name('reporte');
+Route::get('/reportepdf/{id_persona}/{horario}/{gestion}/{mes}',[ControllerReporte::class,'reportepdf'])->name('reportepdf');
 
 
 

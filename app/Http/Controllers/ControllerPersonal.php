@@ -50,6 +50,8 @@ class ControllerPersonal extends Controller
             }
             $titulo="SCC/Lista Personal/Perfil de ".$persona->nombre;
             //$titulo2=$datos->usser;
+            
+
             return view('personal.perfil',compact('titulo','usuario','menu','sub','persona','unidades','datos','unidad','horario','tipos','horarios'));
         }
     	else

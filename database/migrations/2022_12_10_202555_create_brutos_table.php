@@ -15,6 +15,18 @@ class CreateBrutosTable extends Migration
     {
         Schema::create('brutos', function (Blueprint $table) {
             $table->id();
+            $table->integer('uid');
+            $table->integer('user_id');
+            $table->date('fecha');
+            $table->string('hora');
+            $table->integer('gestion');
+            $table->integer('mes');
+            $table->integer('dia');
+            $table->integer('h');
+            $table->integer('m');
+            $table->integer('punch');
+            $table->integer('rstatus');
+            $table->string('lugar');
             $table->timestamps();
         });
     }
